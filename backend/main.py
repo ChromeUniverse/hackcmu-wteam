@@ -121,6 +121,8 @@ def update_vision(cap):
     if ids is not None:
         cv.aruco.drawDetectedMarkers(frame, corners, ids)
 
+        overlay = frame.copy()
+
         print(ids)
 
         # print(corners)
@@ -132,6 +134,11 @@ def update_vision(cap):
             pose = solve_pose(id,corners[index])
 
             dc[id] = pose
+
+            cv.fillPoly(overlay, [corners[index].astype(int)], color=(0, 0, 100))
+
+            alpha = 0.5
+            cv.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
             # # print(pose)
             # # print(corners[index])
             # p0 = (int(corners[index][0][0][0]),int(corners[index][0][0][1]))
