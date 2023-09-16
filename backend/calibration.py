@@ -7,11 +7,11 @@ cap = cv.VideoCapture(0)
 objpoints = []
 imgpoints = []
 
-num_corners_x = 10
-num_corners_y = 7
+num_corners_x = 7
+num_corners_y = 5
 
 # Define the size of each checker in meters
-checker_size = 0.036
+checker_size = 0.999
 
 objp = np.zeros((num_corners_y * num_corners_x, 3), np.float32)
 objp[:,:2] = np.mgrid[0:num_corners_x, 0 : num_corners_y].T.reshape(-1,2) * checker_size
